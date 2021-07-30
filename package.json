@@ -18,7 +18,6 @@
     "discord.js": "^12.5.3",
     "erlpack": "github:discord/erlpack",
     "express": "^4.17.1",
-    "moment": "^2.29.1",
     "mongoose": "^5.13.3",
     "ms": "^2.1.3",
     "pm2": "^5.1.0",

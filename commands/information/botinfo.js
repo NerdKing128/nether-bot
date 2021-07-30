@@ -37,7 +37,7 @@ class Botinfo extends Command {
         )}:F> (<t:${getUnixTimestamp(this.client.user.id, false)}:R>)`,
         true
       )
-      .addField('Bot Version', version)
+      .addField('Bot Version', `v${version}`)
       .addField('Node.js Version', process.version)
       .addField('Discord.js Version', `v${v}`)
       .addField('Bot Uptime', formatPms(this.client.uptime))
