@@ -1,0 +1,22 @@
+{
+  "colors": {
+    "main": "#E90303",
+    "error": "#920000",
+    "development": "#FF00B9",
+    "information": "#FF0076",
+    "utility": "#A74D4D",
+    "fun": "#D00303"
+  },
+  "info": {
+    "developers": ["551486851408461867", "059516255748227122"],
+    "modPerms": [
+      "MANAGE_MESSAGES",
+      "KICK_MEMBERS",
+      "BAN_MEMBERS",
+      "MANAGE_NICKNAMES",
+      "MANAGE_ROLES",
+      "MANAGE_CHANNELS",
+      "MANAGE_GUILD"
+    ]
+  }
+}
