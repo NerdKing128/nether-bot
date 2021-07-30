@@ -14,9 +14,9 @@ class Diceroll extends Command {
 
   async exec(message) {
     return message.channel.send(
-      `You rolled a dice, landing on the number **${Math.floor(
-        Math.random() * 6
-      )}**.`
+      `You rolled a dice, landing on the number **${
+        Math.floor(Math.random() * 6) + 1
+      }**.`
     );
   }
 }
