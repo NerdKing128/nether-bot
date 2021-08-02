@@ -28,7 +28,7 @@ class Demot extends Command {
 
     if (member == message.member)
       return message.channel.send('Demoting yourself is stupid.');
-    if (member == this.client.user) return message.channel.send('No.');
+    if (member.user == this.client.user) return message.channel.send('No.');
     if (member.user.bot)
       return message.channel.send(
         "Demoting a bot ain't really gonna do you any good."
@@ -38,6 +38,10 @@ class Demot extends Command {
       return message.channel.send(
         "A no perm member cannot get a demot. They don't deserve it, anyways."
       );
+    if (member !== message.guild.owner) {
+      if (member.hasPermission('ADMINISTRATOR'))
+        return message.channel.send('Demot a mod, not an admin. Smh.');
+    }
 
     const msg = await message.channel.send(
       'Super secret demot system starting..'
@@ -62,10 +66,6 @@ class Demot extends Command {
         `Mod has shown to ${types[pick]}. Continuing with the process..`
       );
       setTimeout(function () {
-        if (member.id == message.guild.owner.id)
-          return msg.edit(
-            `Mod is the owner of the server. Instead, ${message.author} has been demot for attempt of owner demot.`
-          );
         msg.edit("Mod isn't owner. Continuing the process..");
         setTimeout(function () {
           return msg.edit(`${member} has been demot. F.`);
