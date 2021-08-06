@@ -25,7 +25,7 @@ class Whois extends Command {
   async exec(message, { user }) {
     const args = getArgs(message);
 
-    user = user || (await this.client.users.fetch(args[0]));
+    user = user || (await this.client.users.fetch(args[0]).catch((err) => {}));
     if (!user && args[0])
       return message.channel
         .send('Please correctly provide a user.')

@@ -39,7 +39,7 @@ function getArgs(message) {
   if (!message || typeof message !== 'object')
     throw new ReferenceError('A proper message parameter must be defined.');
 
-  const args = message.content.split(' ').slice(1);
+  const args = message.content.trim().split(' ').slice(1);
 
   return args;
 }
