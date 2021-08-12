@@ -50,7 +50,7 @@ class Lockdown extends Command {
             await LockdownIgnoreModel.findOne({
               _id: message.guild.id,
             })
-          ).ignores || [];
+          )?.ignores || [];
       });
 
       const channels = message.guild.channels.cache.filter(
