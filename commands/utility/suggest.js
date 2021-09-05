@@ -35,7 +35,7 @@ class Suggest extends Command {
         _id: message.guild.id,
       });
     });
-    const channel = message.guild.channels.cache.get(chanID.channel);
+    const channel = message.guild.channels.cache.get(chanID?.channel);
 
     if (!channel)
       return message.channel
