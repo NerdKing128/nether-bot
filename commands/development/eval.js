@@ -34,7 +34,7 @@ class Eval extends Command {
     let instance;
 
     try {
-      output = await eval(JSON.parse(code) ? JSON.parse(code) : code);
+      output = await eval(/*JSON.parse(code) ? JSON.parse(code) : */code);
       type = typeof output;
       if (typeof output !== 'string') output = await inspect(output);
       instance = output;
