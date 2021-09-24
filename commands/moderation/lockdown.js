@@ -118,6 +118,7 @@ class Lockdown extends Command {
           SEND_MESSAGES: type,
           ADD_REACTIONS: type,
           SPEAK: type,
+          CONNECT: type,
         })
         .then(() => {
           if (channel.type == 'text') {
