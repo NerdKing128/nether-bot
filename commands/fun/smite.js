@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
 const { MessageAttachment } = require('discord.js');
+const { getArgs } = require('../../utils/functions.js');
 const Canvas = require('canvas');
 
 class Smite extends Command {
@@ -10,22 +11,26 @@ class Smite extends Command {
       category: 'Fun',
       description: {
         content: 'Smites thy who disobey.',
-        usage: '[member]',
+        usage: '[user]',
       },
       userPermissions: ['ADMINISTRATOR'],
       args: [
         {
-          id: 'member',
-          type: 'member',
+          id: 'user',
+          type: 'user',
         },
       ],
     });
   }
 
-  async exec(message, { member }) {
+  async exec(message, { user }) {
     message.delete();
+    
+    const args = getArgs(message);
 
-    if (!member)
+    user = user || (await this.client.users.fetch(args[0]).catch((err) => {}));
+
+    if (!user)
       return message.channel.send(
         'Smite someone. Do you want to get smited yourself?'
       );
@@ -39,13 +44,13 @@ class Smite extends Command {
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     const avatar = await Canvas.loadImage(
-      member.user.displayAvatarURL({ format: 'png' })
+      user.displayAvatarURL({ format: 'png' })
     );
     ctx.drawImage(avatar, 780, 700, 300, 300);
 
     const attachment = new MessageAttachment(
       canvas.toBuffer(),
-      `${member.id}.png`
+      `${user.id}.png`
     );
 
     return message.channel.send(attachment);
