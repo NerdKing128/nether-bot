@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
 const { MessageAttachment } = require('discord.js');
+const { getArgs } = require('../../utils/functions.js');
 const Canvas = require('canvas');
 
 class Basement extends Command {
@@ -15,19 +16,23 @@ class Basement extends Command {
       userPermissions: ['ADMINISTRATOR'],
       args: [
         {
-          id: 'member',
-          type: 'member',
+          id: 'user',
+          type: 'user',
         },
       ],
     });
   }
 
-  async exec(message, { member }) {
+  async exec(message, { user }) {
     message.delete();
+    
+    const args = getArgs(message);
 
-    if (!member)
+    user = user || (await this.client.users.fetch(args[0]).catch((err) => {}));
+
+    if (!user)
       return message.channel.send('Send someone to the basement. Smh.');
-    if (member.id == '379420154955825153')
+    if (user.id == '379420154955825153')
       return message.channel.send(
         'You cannot put the almighty Lord Luca in the basement.'
       );
@@ -41,7 +46,7 @@ class Basement extends Command {
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     const avatar = await Canvas.loadImage(
-      member.user.displayAvatarURL({ format: 'png' })
+      user.displayAvatarURL({ format: 'png' })
     );
     ctx.drawImage(avatar, 310, 265, 350, 350);
 
